@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogAlyzer</title>
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                    <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+                    <path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2z"></path>
+                    <path d="m10 12 4 4"></path>
+                    <path d="m14 12-4 4"></path>
+                </svg>
+                <h1>LogAlyzer</h1>
+            </div>
+            <div class="theme-toggle">
+                <button id="theme-toggle-btn" class="icon-button" aria-label="Toggle theme">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="icon">
+                        <circle cx="12" cy="12" r="4"></circle>
+                        <path d="M12 2v2"></path>
+                        <path d="M12 20v2"></path>
+                        <path d="m4.93 4.93 1.41 1.41"></path>
+                        <path d="m17.66 17.66 1.41 1.41"></path>
+                        <path d="M2 12h2"></path>
+                        <path d="M20 12h2"></path>
+                        <path d="m6.34 17.66-1.41 1.41"></path>
+                        <path d="m19.07 4.93-1.41 1.41"></path>
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+        <main class="main">
+            <div class="upload-section" id="upload-section">
+                <div class="upload-container" id="drop-area">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="upload-icon">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                    <h2>Upload Log File</h2>
+                    <p>Drag and drop your log file here or click to browse</p>
+                    <input type="file" id="file-input" class="file-input" accept=".log,.txt">
+                    <button class="button primary" id="browse-btn">Browse Files</button>
+                </div>
+            </div>
+
+            <div class="results-section hidden" id="results-section">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="header-content">
+                            <h2 id="file-name">Log Analysis Results</h2>
+                            <div class="action-buttons">
+                                <button class="icon-button" id="upload-new-btn" title="Upload">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                        <polyline points="17 8 12 3 7 8"></polyline>
+                                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                                    </svg>
+                                </button>
+                                <button class="icon-button" id="download-txt-btn" title="Save as TXT">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path
+                                            d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+                                        <polyline points="14 2 14 8 20 8" />
+                                        <path d="M12 18v-6" />
+                                        <path d="m9 15 3 3 3-3" />
+                                    </svg>
+                                </button>
+                                <button class="icon-button" id="download-csv-btn" title="Save as CSV">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path
+                                            d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+                                        <polyline points="14 2 14 8 20 8" />
+                                        <path d="M10 13v-3h3v3" />
+                                        <path d="M10 13h3" />
+                                        <path d="M10 17h3" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="stats">
+                            <div class="stat-item">
+                                <span class="stat-label">Errors:</span>
+                                <span class="stat-value error-count" id="error-count">0</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Warnings:</span>
+                                <span class="stat-value warning-count" id="warning-count">0</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Info:</span>
+                                <span class="stat-value info-count" id="info-count">0</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Debug:</span>
+                                <span class="stat-value debug-count" id="debug-count">0</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="tabs">
+                        <button class="tab-button active" data-tab="all">All Logs</button>
+                        <button class="tab-button" data-tab="errors">Errors</button>
+                        <button class="tab-button" data-tab="warnings">Warnings</button>
+                        <button class="tab-button" data-tab="info">Info</button>
+                        <button class="tab-button" data-tab="debug">Debug</button>
+                        <button class="tab-button" data-tab="custom">Custom Filter</button>
+                    </div>
+
+                    <div class="custom-filter hidden" id="custom-filter">
+                        <div class="input-group">
+                            <input type="text" id="regex-input" class="input" placeholder="Enter regex pattern...">
+                            <button class="button primary" id="apply-regex">Apply</button>
+                        </div>
+                    </div>
+
+                    <div class="tab-content">
+                        <div class="log-container" id="log-container">
+                            <div class="loading hidden" id="loading">
+                                <div class="spinner"></div>
+                                <p>Analyzing log file...</p>
+                            </div>
+                            <pre id="log-output" class="log-output"></pre>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <button class="button secondary" id="back-btn">Upload</button>
+                        <div class="download-group">
+                            <button class="button primary" id="download-txt-btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="icon">
+                                    <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+                                    <polyline points="14 2 14 8 20 8" />
+                                </svg>
+                                Save as TXT
+                            </button>
+                            <button class="button primary" id="download-csv-btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="icon">
+                                    <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+                                    <polyline points="14 2 14 8 20 8" />
+                                    <path d="M8 13h2" />
+                                    <path d="M8 17h2" />
+                                    <path d="M14 13h2" />
+                                    <path d="M14 17h2" />
+                                </svg>
+                                Save as CSV
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="./assets/js/script.js"></script>
+</body>
+
+</html>
