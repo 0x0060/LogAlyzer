@@ -89,7 +89,6 @@ const patterns = {
   info: /\b(INFO(?:RMATION)?|NOTICE|INF|NFO|NOTE|MESSAGE|MSG|✨|ℹ️|🔵)\b/i,
   debug: /\b(DEBUG|DBG|TRACE|TRC|VERBOSE|DETAIL|DIAG(?:NOSTIC)?|DEV|FINE|🐛)\b/i,
 }
-
 ```
 
 Common timestamp formats
